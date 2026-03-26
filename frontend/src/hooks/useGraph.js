@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 
-const API_BASE = '/api';
+const API_BASE = 'https://dodgeai-yh1n.onrender.com/api';
 
 export function useGraph() {
   const [nodes, setNodes] = useState([]);

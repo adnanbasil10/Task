@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-const API_BASE = '/api';
+const API_BASE = 'https://dodgeai-yh1n.onrender.com/api';
 
 export function useChat() {
   const [messages, setMessages] = useState([]);

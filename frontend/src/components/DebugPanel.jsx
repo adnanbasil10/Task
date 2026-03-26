@@ -9,8 +9,8 @@ export default function DebugPanel({ visible, onClose }) {
     if (!visible) return;
     setLoading(true);
     Promise.all([
-      fetch('/api/debug/logs').then(r => r.json()),
-      fetch('/api/debug/summary').then(r => r.json()),
+      fetch('https://dodgeai-yh1n.onrender.com/api/debug/logs').then(r => r.json()),
+      fetch('https://dodgeai-yh1n.onrender.com/api/debug/summary').then(r => r.json()),
     ])
       .then(([logsData, summaryData]) => { setLogs(logsData.logs || []); setSummary(summaryData); })
       .catch(() => {})

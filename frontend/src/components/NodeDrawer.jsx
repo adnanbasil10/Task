@@ -7,7 +7,7 @@ export default function NodeDrawer({ nodeData, onClose }) {
   useEffect(() => {
     if (!nodeData) return;
     setLoading(true);
-    fetch(`/api/node/${nodeData.nodeType}/${nodeData.metadata?.id || nodeData.id}`)
+    fetch(`https://dodgeai-yh1n.onrender.com/api/node/${nodeData.nodeType}/${nodeData.metadata?.id || nodeData.id}`)
       .then(res => res.json())
       .then(data => { setDetails(data); setLoading(false); })
       .catch(() => setLoading(false));
