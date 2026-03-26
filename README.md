@@ -385,20 +385,3 @@ Open http://localhost:5173 — you should see the graph with 435 nodes and 657 e
 └── README.md                  # This file
 ```
 
----
-
-## AI Session Logs
-
-The complete AI-assisted development transcript is available in [`AI_SESSION_TRANSCRIPT.md`](./AI_SESSION_TRANSCRIPT.md).
-
-It documents:
-- All major prompts and AI responses
-- Architecture decisions and rationale
-- Debugging workflow (screenshot → feedback → fix iteration)
-- Performance optimization steps
-
----
-
-## License
-
-MIT
