@@ -28,7 +28,7 @@ services:
     routes:
       - type: rewrite
         source: /api/*
-        destination: https://context-graph-api.onrender.com/api/*
+        destination: https://dodgeai-yh1n.onrender.com/api/*
       - type: rewrite
         source: /*
         destination: /index.html
