@@ -173,45 +173,58 @@ Generate a SQLite-compatible SQL query to answer this question. Wrap it in <SQL>
             sql_messages.insert(-1, {"role": h.get("role", "user"), "content": h.get("content", "")})
 
     try:
-        sql_text = _call_groq(sql_messages)
+        sql_query = None
+        rows_returned = 0
+        results = []
+        
+        # Self-correction loop: try up to 2 times
+        for attempt in range(2):
+            sql_text = _call_groq(sql_messages)
+            sql_query = extract_sql(sql_text)
+            
+            if not sql_query:
+                # Try to find SQL in code blocks as fallback
+                code_match = re.search(r"```sql\s*(.*?)\s*```", sql_text, re.DOTALL | re.IGNORECASE)
+                if code_match:
+                    sql_query = code_match.group(1).strip()
+                    
+            if not sql_query:
+                return {
+                    "answer": "I couldn't generate a valid SQL query for that question. Could you rephrase it?",
+                    "sql": None,
+                    "nodes_referenced": [],
+                    "in_domain": True,
+                    "rows_returned": 0
+                }
 
-        sql_query = extract_sql(sql_text)
-
-        if not sql_query:
-            # Try to find SQL in code blocks as fallback
-            code_match = re.search(r"```sql\s*(.*?)\s*```", sql_text, re.DOTALL | re.IGNORECASE)
-            if code_match:
-                sql_query = code_match.group(1).strip()
-
-        if not sql_query:
-            return {
-                "answer": "I couldn't generate a valid SQL query for that question. Could you rephrase it?",
-                "sql": None,
-                "nodes_referenced": [],
-                "in_domain": True,
-                "rows_returned": 0
-            }
-
-        # Step 3: Execute SQL safely
-        try:
-            results = execute_readonly(sql_query)
-            rows_returned = len(results)
-        except ValueError as e:
-            return {
-                "answer": f"The generated query was blocked for safety: {str(e)}",
-                "sql": sql_query,
-                "nodes_referenced": [],
-                "in_domain": True,
-                "rows_returned": 0
-            }
-        except Exception as e:
-            return {
-                "answer": f"SQL execution error: {str(e)}",
-                "sql": sql_query,
-                "nodes_referenced": [],
-                "in_domain": True,
-                "rows_returned": 0
-            }
+            # Execute SQL safely
+            try:
+                results = execute_readonly(sql_query)
+                rows_returned = len(results)
+                break  # Execution succeeded, break out of retry loop
+                
+            except ValueError as e:
+                return {
+                    "answer": f"The generated query was blocked for safety: {str(e)}",
+                    "sql": sql_query,
+                    "nodes_referenced": [],
+                    "in_domain": True,
+                    "rows_returned": 0
+                }
+            except Exception as e:
+                # If it's the first attempt and an operational error occurs, ask the LLM to fix it
+                if attempt == 0:
+                    sql_messages.append({"role": "assistant", "content": sql_text})
+                    sql_messages.append({"role": "user", "content": f"Your SQL query failed with this error: {str(e)}. Look closely at the exact database schema and correct the SQL query. Remember that order_items joins orders and products, and invoice_items joins invoices. Output ONLY the corrected SQL wrapped in <SQL></SQL> tags."})
+                    continue
+                else:
+                    return {
+                        "answer": f"SQL execution error: {str(e)} \n*(Auto-recovery failed after 2 attempts)*",
+                        "sql": sql_query,
+                        "nodes_referenced": [],
+                        "in_domain": True,
+                        "rows_returned": 0
+                    }
 
         # Step 4: Generate NL answer
         display_results = results[:50] if len(results) > 50 else results
