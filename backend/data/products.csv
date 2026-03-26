@@ -1,0 +1,31 @@
+id,name,category,unit_price,sku
+PROD-001,Steel Coil,Components,221.9,SKU-81200
+PROD-002,Aluminum Sheet,Finished Goods,307.78,SKU-95717
+PROD-003,Copper Wire,Services,8.87,SKU-82692
+PROD-004,Plastic Resin,Finished Goods,466.22,SKU-23577
+PROD-005,Glass Panel,Components,135.91,SKU-24029
+PROD-006,Circuit Board,Services,81.95,SKU-46930
+PROD-007,Hydraulic Pump,Services,109.26,SKU-54942
+PROD-008,Electric Motor,Components,345.31,SKU-44600
+PROD-009,Sensor Module,Services,246.82,SKU-16658
+PROD-010,Battery Pack,Raw Materials,318.97,SKU-46265
+PROD-011,Industrial Valve,Raw Materials,6.76,SKU-27146
+PROD-012,Rubber Gasket,Finished Goods,84.98,SKU-67912
+PROD-013,LED Display,Services,354.31,SKU-83519
+PROD-014,Power Supply,Raw Materials,60.38,SKU-29536
+PROD-015,Control Unit,Services,22.83,SKU-58393
+PROD-016,Bearing Assembly,Services,278.5,SKU-66333
+PROD-017,Heat Exchanger,Components,25.71,SKU-57795
+PROD-018,Filter Cartridge,Raw Materials,449.97,SKU-37535
+PROD-019,Welding Rod,Components,335.13,SKU-56357
+PROD-020,Safety Helmet,Services,442.65,SKU-63264
+PROD-021,Conveyor Belt,Services,375.99,SKU-41029
+PROD-022,Gear Box,Components,488.22,SKU-33206
+PROD-023,Transformer,Packaging,17.27,SKU-53540
+PROD-024,Cable Harness,Packaging,402.11,SKU-42527
+PROD-025,Pressure Gauge,Finished Goods,83.8,SKU-24168
+PROD-026,O-Ring Set,Packaging,436.72,SKU-71694
+PROD-027,Thermal Paste,Components,103.79,SKU-70332
+PROD-028,Optical Fiber,Finished Goods,156.07,SKU-39831
+PROD-029,Cooling Fan,Components,16.71,SKU-35313
+PROD-030,Junction Box,Packaging,167.49,SKU-19099

@@ -1,0 +1,132 @@
+@import "tailwindcss";
+@import "@xyflow/react/dist/style.css";
+
+@theme {
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f8f9fa;
+  --color-surface-hover: #f1f3f5;
+  --color-border: #e9ecef;
+  --color-border-dark: #dee2e6;
+  --color-text-primary: #212529;
+  --color-text-secondary: #6c757d;
+  --color-text-muted: #adb5bd;
+  --color-accent: #228be6;
+  --color-accent-light: #e7f5ff;
+  --color-node-order: #228be6;
+  --color-node-delivery: #40c057;
+  --color-node-invoice: #fab005;
+  --color-node-payment: #7950f2;
+  --color-node-customer: #e64980;
+  --color-node-product: #15aabf;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #dee2e6; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #adb5bd; }
+
+/* React Flow Clean Overrides */
+.react-flow__background {
+  background-color: #ffffff !important;
+}
+.react-flow__minimap {
+  background-color: #f8f9fa !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+}
+.react-flow__controls {
+  border: 1px solid #e9ecef !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+}
+.react-flow__controls-button {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e9ecef !important;
+  fill: #6c757d !important;
+  width: 28px !important;
+  height: 28px !important;
+}
+.react-flow__controls-button:hover {
+  background: #f8f9fa !important;
+  fill: #212529 !important;
+}
+.react-flow__edge-path {
+  stroke: #b8d4e8 !important;
+  stroke-width: 1 !important;
+}
+
+/* Glow animation for highlighted nodes */
+@keyframes nodeGlow {
+  0%, 100% { box-shadow: 0 0 6px 2px rgba(34, 139, 230, 0.4); }
+  50% { box-shadow: 0 0 16px 6px rgba(34, 139, 230, 0.7); }
+}
+.node-highlighted {
+  animation: nodeGlow 1s ease-in-out infinite;
+}
+.node-broken {
+  animation: none;
+  box-shadow: 0 0 10px 4px rgba(230, 73, 128, 0.5) !important;
+}
+
+/* Chat message animation */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.message-enter { animation: slideIn 0.25s ease-out; }
+
+/* Loading skeleton */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f1f3f5 25%, #e9ecef 50%, #f1f3f5 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Node tooltip card */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.tooltip-enter { animation: fadeIn 0.2s ease-out; }
+
+/* Dark skeleton for chat panel */
+.skeleton-dark {
+  background: linear-gradient(90deg, #252525 25%, #333333 50%, #252525 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Dark scrollbar for chat */
+.bg-\[\\#1a1a1a\] ::-webkit-scrollbar-thumb { background: #333; }
+.bg-\[\\#1a1a1a\] ::-webkit-scrollbar-track { background: transparent; }

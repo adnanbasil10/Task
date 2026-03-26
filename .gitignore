@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# Database (regenerated on startup)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Node
+node_modules/
+frontend/dist/
+frontend/build/
+
+# Logs (regenerated at runtime)
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Gemini agent artifacts
+.gemini/
