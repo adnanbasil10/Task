@@ -2,9 +2,8 @@
 
 > LLM-powered context graph system with natural language query interface for SAP Order-to-Cash business data.
 
-**Live Demo:** _[Add your deployed URL here]_
-
----
+**Live Frontend:** [https://dodgeai-wtxr.onrender.com/](https://dodgeai-wtxr.onrender.com/)
+**Live Backend API:** [https://dodgeai-yh1n.onrender.com/](https://dodgeai-yh1n.onrender.com/)---
 
 ## Table of Contents
 
